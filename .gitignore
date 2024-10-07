@@ -1,0 +1,14 @@
+# Node modules
+node_modules/
+
+# Build files
+build/
+
+# Logs
+*.log
+
+# Environment files
+.env
+
+# Docker files
+*.tar
