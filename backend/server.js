@@ -10,7 +10,10 @@ const chatRoutes = require('./routes/chat');
 dotenv.config();
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: 'http://34.46.247.125/',
+  methods: ['GET', 'POST', 'PUT', 'DELETE']
+}));
 app.use(express.json());
 
 // Healthcheck route
