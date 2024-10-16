@@ -1,16 +1,31 @@
 const express = require('express');
 const cors = require('cors');
-const app = express();
+const dotenv = require('dotenv');
+const studyMaterialRoutes = require('./routes/studyMaterial');
+const authRoutes = require('./routes/auth');
+const courseRoutes = require('./routes/course');  
+const chatRoutes = require('./routes/chat'); 
 
+// Load environment variables
+dotenv.config();
+
+const app = express();
 app.use(cors());
 app.use(express.json());
 
-const PORT = process.env.PORT || 5000;
-
-app.get('/', (req, res) => {
-    res.send('CourseCompanion Backend API');
+// Healthcheck route
+app.get('/health', (req, res) => {
+  res.status(200).json({ message: 'Backend is up and running!' });
 });
 
-app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
+// Routes
+app.use('/auth', authRoutes);
+app.use('/study-material', studyMaterialRoutes);
+app.use('/courses', courseRoutes);  
+app.use('/chat', chatRoutes);  
+
+// Start server
+const port = process.env.PORT || 81;
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
 });

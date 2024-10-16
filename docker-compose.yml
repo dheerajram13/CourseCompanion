@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    networks:
+      - coursecompanion-network
+    deploy:
+      replicas: 3  # Set the number of replicas for scaling
+    depends_on:
+      - backend
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "81:81"
+    environment:
+      - PORT=81
+      - FIREBASE_DB_URL=https://coursecompanion-de8fa-default-rtdb.firebaseio.com/
+    volumes:
+      - ./firebase-config.json:/app/firebase-config.json
+    networks:
+      - coursecompanion-network
+    deploy:
+      replicas: 4 
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:81/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+networks:
+  coursecompanion-network:
+    driver: bridge
