@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { TextField, Button, Box, Typography, Paper } from '@mui/material';
 
+
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://backend:81';
+
 const Signup = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -11,7 +14,7 @@ const Signup = () => {
         e.preventDefault();
 
         try {
-            const response = await fetch('http://localhost:81/auth/signup', {
+            const response = await fetch('${API_BASE_URL}/auth/signup', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
