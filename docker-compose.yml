@@ -1,18 +1,37 @@
 version: '3.8'
 
 services:
+  loadbalancer:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    configs:
+      - source: nginx_config
+        target: /etc/nginx/nginx.conf
+    networks:
+      - coursecompanion-network
+    deploy:
+      mode: global
+      placement:
+        constraints:
+          - node.role == manager
+
   frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    ports:
-      - "80:80"
     networks:
       - coursecompanion-network
     deploy:
-      replicas: 3  # Set the number of replicas for scaling
-    depends_on:
-      - backend
+      replicas: 3
+      update_config:
+        parallelism: 1
+        order: rolling-update
+      rollback_config:
+        parallelism: 1
+        order: rollback
+      restart_policy:
+        condition: on-failure
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost/"]
       interval: 30s
@@ -23,17 +42,24 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    ports:
-      - "81:81"
     environment:
       - PORT=81
       - FIREBASE_DB_URL=https://coursecompanion-de8fa-default-rtdb.firebaseio.com/
-    volumes:
-      - ./firebase-config.json:/app/firebase-config.json
+    configs:
+      - source: firebase_config
+        target: /app/firebase-config.json
     networks:
       - coursecompanion-network
     deploy:
-      replicas: 4 
+      replicas: 4
+      update_config:
+        parallelism: 1
+        order: rolling-update
+      rollback_config:
+        parallelism: 1
+        order: rollback
+      restart_policy:
+        condition: on-failure
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:81/health"]
       interval: 30s
@@ -42,4 +68,10 @@ services:
 
 networks:
   coursecompanion-network:
-    driver: bridge
+    driver: overlay
+
+configs:
+  nginx_config:
+    file: ./nginx.conf
+  firebase_config:
+    file: ./firebase-config.json
