@@ -23,6 +23,8 @@ services:
     image: coursecompanion_frontend:latest
     networks:
       - coursecompanion-network
+    ports:         
+      - "3000:80"  
     environment:
       - REACT_APP_API_BASE_URL=http://backend:81/api
     deploy:
@@ -34,6 +36,8 @@ services:
 
   backend:
     image: coursecompanion_backend:latest
+    ports:         
+      - "81:81"     
     environment:
       - PORT=81
       - FIREBASE_DB_URL=https://coursecompanion-de8fa-default-rtdb.firebaseio.com/
