@@ -10,8 +10,23 @@ const chatRoutes = require('./routes/chat');
 dotenv.config();
 
 const app = express();
+
+const allowedOrigins = [
+  'http://34.46.247.125',
+  'http://localhost:3000',
+  'http://localhost:80'
+];
+
 app.use(cors({
-  origin: 'http://34.46.247.125/',
+  origin: function(origin, callback) {
+    // Allow requests with no origin (like mobile apps, curl requests)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) === -1) {
+      const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
+  },
   methods: ['GET', 'POST', 'PUT', 'DELETE']
 }));
 app.use(express.json());
