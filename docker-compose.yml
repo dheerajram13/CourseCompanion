@@ -17,7 +17,7 @@ services:
           - node.role == manager
 
   frontend:
-    image: frontend:latest
+    image: coursecompanion_frontend:latest
     networks:
       - coursecompanion-network
     deploy:
@@ -33,7 +33,7 @@ services:
       retries: 3
 
   backend:
-    image: backend:latest
+    image: coursecompanion_backend:latest
     environment:
       - PORT=81
       - FIREBASE_DB_URL=https://coursecompanion-de8fa-default-rtdb.firebaseio.com/
