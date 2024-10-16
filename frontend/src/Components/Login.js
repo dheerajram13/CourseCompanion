@@ -9,7 +9,7 @@ const Login = ({ onLoginSuccess }) => {
         event.preventDefault();
         try {
             // Replace this with your actual API endpoint
-            const response = await fetch('http://localhost:81/auth/login', {
+            const response = await fetch('http://34.46.247.125/auth/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

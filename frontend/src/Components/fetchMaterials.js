@@ -1,6 +1,6 @@
 export const fetchMaterials = async (uid, course, visibility) => {
     try {
-        const response = await fetch('http://localhost:81/study-material/materials', {
+        const response = await fetch('http://34.46.247.125/study-material/materials', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

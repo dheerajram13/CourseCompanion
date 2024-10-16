@@ -14,7 +14,7 @@ const Signup = () => {
         e.preventDefault();
 
         try {
-            const response = await fetch('http://localhost:81/auth/signup', {
+            const response = await fetch('http://34.46.247.125/auth/signup', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

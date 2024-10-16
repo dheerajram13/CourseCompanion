@@ -11,7 +11,7 @@ const DiscussionBoard = ({ courseId, uid }) => {
 
     const fetchPosts = async () => {
         try {
-            const response = await fetch(`http://localhost:81/courses/${courseId}/discussion`, {
+            const response = await fetch(`http://34.46.247.125/courses/${courseId}/discussion`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -33,7 +33,7 @@ const DiscussionBoard = ({ courseId, uid }) => {
     const handleSubmitPost = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch(`http://localhost:81/courses/${courseId}/discussion/post`, {
+            const response = await fetch(`http://34.46.247.125/courses/${courseId}/discussion/post`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

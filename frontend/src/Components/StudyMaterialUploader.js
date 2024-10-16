@@ -30,7 +30,7 @@ const StudyMaterialUploader = ({ uid }) => {
     useEffect(() => {
         const fetchCourses = async () => {
             try {
-                const response = await fetch('http://localhost:81/courses/public', {
+                const response = await fetch('http://34.46.247.125/courses/public', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -80,7 +80,7 @@ const StudyMaterialUploader = ({ uid }) => {
         formData.append('uid', uid);
 
         try {
-            const response = await fetch('http://localhost:81/study-material/upload', {
+            const response = await fetch('http://34.46.247.125/study-material/upload', {
                 method: 'POST',
                 body: formData,
             });
