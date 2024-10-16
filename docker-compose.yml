@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3.3'
 
 services:
   loadbalancer:
@@ -26,10 +26,6 @@ services:
       replicas: 3
       update_config:
         parallelism: 1
-        order: rolling-update
-      rollback_config:
-        parallelism: 1
-        order: rollback
       restart_policy:
         condition: on-failure
     healthcheck:
@@ -54,10 +50,6 @@ services:
       replicas: 4
       update_config:
         parallelism: 1
-        order: rolling-update
-      rollback_config:
-        parallelism: 1
-        order: rollback
       restart_policy:
         condition: on-failure
     healthcheck:
