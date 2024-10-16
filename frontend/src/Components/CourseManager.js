@@ -26,7 +26,7 @@ const CourseManager = ({ uid }) => {
     // Fetch courses
     const fetchCourses = async () => {
         try {
-            const userResponse = await fetch('http://34.46.247.125/courses/public', {
+            const userResponse = await fetch('http://34.46.247.125:81/courses/public', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -71,7 +71,7 @@ const CourseManager = ({ uid }) => {
     // Handle course enrollment
     const handleEnroll = async (courseId) => {
         try {
-            const response = await fetch(`http://34.46.247.125/courses/${courseId}/enroll`, {
+            const response = await fetch(`http://34.46.247.125:81/courses/${courseId}/enroll`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -92,7 +92,7 @@ const CourseManager = ({ uid }) => {
     // Handle opening the users modal
     const handleOpenUsersModal = async (courseId) => {
         try {
-            const response = await fetch(`http://34.46.247.125/courses/${courseId}/users`, {
+            const response = await fetch(`http://34.46.247.125:81/courses/${courseId}/users`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -120,7 +120,7 @@ const CourseManager = ({ uid }) => {
         };
 
         try {
-            const response = await fetch('http://34.46.247.125/courses/add', {
+            const response = await fetch('http://34.46.247.125:81/courses/add', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -145,7 +145,7 @@ const CourseManager = ({ uid }) => {
     // Handle course deletion
     const handleDeleteCourse = async (courseId) => {
         try {
-            const response = await fetch(`http://34.46.247.125/courses/${courseId}`, {
+            const response = await fetch(`http://34.46.247.125:81/courses/${courseId}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json'
