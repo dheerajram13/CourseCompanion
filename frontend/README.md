@@ -1,70 +1,45 @@
-# Getting Started with Create React App
+# Course Companion Setup Instructions
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This document provides a step-by-step guide to set up the Course Companion application on an Ubuntu VM instance, including installation of necessary tools and deployment using Docker.
 
-## Available Scripts
+## Prerequisites
 
-In the project directory, you can run:
+- A cloud provider account (e.g., AWS, Google Cloud, Azure) to create a VM instance.
+- Basic familiarity with terminal commands and SSH.
 
-### `npm start`
+## Step 1: Create a VM Instance
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. **Create a VM instance** with Ubuntu OS.
+2. **Connect to the VM instance via SSH**:
+3. Enter the commands
+    ```bash
+    sudo apt update
+    sudo apt install git -y
+    ```
+4. git clone https://github.com/dheerajram13/CourseCompanion
+cd CourseCompanion
+5. 
+ ```bash
+sudo apt install apt-transport-https ca-certificates curl software-properties-common -y
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+sudo apt update
+sudo apt install docker-ce -y
+sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/
+```
+6. Docker Swarm 
+ ```bash
+sudo docker swarm init
+sudo docker build -t coursecompanion_frontend:latest ./frontend
+sudo docker build -t coursecompanion_backend:latest ./backend
+sudo docker stack deploy --compose-file docker-compose.yml coursecompanion
+sudo docker stack ps coursecompanion
+  ```
+7. Rollout and Rollback
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+ ```bash
+sudo docker service update --image coursecompanion_frontend:latest coursecompanion_frontend
+sudo docker service rollback coursecompanion_frontend
+sudo docker service ps coursecompanion_frontend
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+  ```
