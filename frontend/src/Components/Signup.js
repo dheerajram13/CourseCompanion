@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { TextField, Button, Box, Typography, Paper } from '@mui/material';
+import config from '../config';  
 
 
 
@@ -12,9 +13,11 @@ const Signup = () => {
 
     const handleSignup = async (e) => {
         e.preventDefault();
-
+        console.log(config.baseUrl);
+        const signupURL = config.baseUrl + '/auth/signup'; 
+        console.log(signupURL, typeof(signupURL));
         try {
-            const response = await fetch('http://34.46.247.125:81/auth/signup', {
+            const response = await fetch(signupURL, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

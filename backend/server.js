@@ -12,9 +12,8 @@ dotenv.config();
 const app = express();
 
 const allowedOrigins = [
-  'http://34.46.247.125:81',
-  'http://34.46.247.125:80',
-  'http://34.46.247.125',
+  'http://35.208.88.146:81',
+  'http://35.208.88.146:80',
   'http://localhost:3000',
   'http://localhost:80'
 ];
