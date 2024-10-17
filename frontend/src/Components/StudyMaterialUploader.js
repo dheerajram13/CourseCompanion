@@ -19,6 +19,7 @@ import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
 import PublicIcon from '@mui/icons-material/Public';
 import LockIcon from '@mui/icons-material/Lock';
+import config from '../config';
 
 const StudyMaterialUploader = ({ uid }) => {
     const [file, setFile] = useState(null);
@@ -27,10 +28,11 @@ const StudyMaterialUploader = ({ uid }) => {
     const [selectedCourse, setSelectedCourse] = useState('');
     const [visibility, setVisibility] = useState('public');
     const [openModal, setOpenModal] = useState(false); 
+    const baseURL = config.baseUrl;
     useEffect(() => {
         const fetchCourses = async () => {
             try {
-                const response = await fetch('http://34.46.247.125:81/courses/public', {
+                const response = await fetch(`${baseURL}/courses/public`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -80,7 +82,7 @@ const StudyMaterialUploader = ({ uid }) => {
         formData.append('uid', uid);
 
         try {
-            const response = await fetch('http://34.46.247.125:81/study-material/upload', {
+            const response = await fetch(`${baseURL}/study-material/upload`, {
                 method: 'POST',
                 body: formData,
             });

@@ -1,6 +1,9 @@
+import config from "../config";
+
+const baseURL = config.baseUrl;
 export const fetchMaterials = async (uid, course, visibility) => {
     try {
-        const response = await fetch('http://34.46.247.125:81/study-material/materials', {
+        const response = await fetch(`${baseURL}/study-material/materials`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

@@ -5,18 +5,19 @@ import DiscussionBoard from './DiscussionBoard';
 import CourseMaterials from './CourseMaterials';
 import { useNavigate } from 'react-router-dom';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-
+import config from '../config';
 const CourseDetailPage = ({ uid }) => {
     const { courseId } = useParams();
     const [courseDetails, setCourseDetails] = useState(null);
     const [isEnrolled, setIsEnrolled] = useState(false);
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
+    const baseURL = config.baseUrl;
 
     useEffect(() => {
         const fetchCourseDetails = async () => {
             try {
-                const response = await fetch(`http://34.46.247.125:81/courses/${courseId}/details`, {
+                const response = await fetch(`${baseURL}/${courseId}/details`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

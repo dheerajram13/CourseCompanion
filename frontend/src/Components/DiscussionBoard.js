@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { List, ListItem, ListItemText, TextField, Button, Paper } from '@mui/material';
-
+import config from '../config';
 const DiscussionBoard = ({ courseId, uid }) => {
     const [posts, setPosts] = useState([]);
     const [newPost, setNewPost] = useState('');
+    const baseURL = config.baseUrl;
 
     useEffect(() => {
         fetchPosts();
@@ -11,7 +12,7 @@ const DiscussionBoard = ({ courseId, uid }) => {
 
     const fetchPosts = async () => {
         try {
-            const response = await fetch(`http://34.46.247.125:81/courses/${courseId}/discussion`, {
+            const response = await fetch(`${baseURL}/courses/${courseId}/discussion`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -33,7 +34,7 @@ const DiscussionBoard = ({ courseId, uid }) => {
     const handleSubmitPost = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch(`http://34.46.247.125:81/courses/${courseId}/discussion/post`, {
+            const response = await fetch(`${baseURL}/courses/${courseId}/discussion/post`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

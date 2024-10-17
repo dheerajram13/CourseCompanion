@@ -5,7 +5,7 @@ import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import DescriptionIcon from '@mui/icons-material/Description';
 import ImageIcon from '@mui/icons-material/Image';
-
+import config from '../config';
 
 const CourseMaterials = ({ courseId, uid }) => {
     const [materials, setMaterials] = useState([]);
@@ -19,9 +19,10 @@ const CourseMaterials = ({ courseId, uid }) => {
         const words = name.split(' ');
         return words.length > 3 ? `${words.slice(0, 2).join(' ')}...` : name;
     };
+    const baseURL = config.baseUrl;
     const fetchMaterials = async () => {
         try {
-            const response = await fetch(`http://34.46.247.125:81/study-material/materials`, {
+            const response = await fetch(`${baseURL}/study-material/materials`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

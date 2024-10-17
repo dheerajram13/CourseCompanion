@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import { TextField, Button, Box, Typography, Paper } from '@mui/material';
+import config from '../config';
 
 const Login = ({ onLoginSuccess }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const baseURL = config.baseUrl;
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
             // Replace this with your actual API endpoint
-            const response = await fetch('http://34.46.247.125:81/auth/login', {
+            const response = await fetch(`${baseURL}/auth/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

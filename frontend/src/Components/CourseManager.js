@@ -8,6 +8,7 @@ import CourseCard from './CourseCard';
 import MaterialCard from './MaterialCard';
 import UsersModal from './UsersModal';
 import StudyMaterialUploader from './StudyMaterialUploader';
+import config from '../config';
 
 const CourseManager = ({ uid }) => {
     const [courses, setCourses] = useState([]);
@@ -22,11 +23,14 @@ const CourseManager = ({ uid }) => {
     const navigate = useNavigate();
 
     
-
+    const coursesPublicURL = config.baseUrl + '/courses/public'; 
+    const coursesURL = config.baseUrl + '/courses'; 
+    const materialsURL = config.baseUrl + '/courses/public'; 
+    console.log(coursesURL, typeof(coursesURL));
     // Fetch courses
     const fetchCourses = async () => {
         try {
-            const userResponse = await fetch('http://34.46.247.125:81/courses/public', {
+            const userResponse = await fetch(coursesPublicURL, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -68,10 +72,11 @@ const CourseManager = ({ uid }) => {
         fetchStudyMaterials();
     }, [uid]);
 
+    
     // Handle course enrollment
     const handleEnroll = async (courseId) => {
         try {
-            const response = await fetch(`http://34.46.247.125:81/courses/${courseId}/enroll`, {
+            const response = await fetch(`${coursesURL}/${courseId}/enroll`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -92,7 +97,7 @@ const CourseManager = ({ uid }) => {
     // Handle opening the users modal
     const handleOpenUsersModal = async (courseId) => {
         try {
-            const response = await fetch(`http://34.46.247.125:81/courses/${courseId}/users`, {
+            const response = await fetch(`${coursesURL}/${courseId}/users`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -120,7 +125,7 @@ const CourseManager = ({ uid }) => {
         };
 
         try {
-            const response = await fetch('http://34.46.247.125:81/courses/add', {
+            const response = await fetch(`${coursesURL}/add`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -145,7 +150,7 @@ const CourseManager = ({ uid }) => {
     // Handle course deletion
     const handleDeleteCourse = async (courseId) => {
         try {
-            const response = await fetch(`http://34.46.247.125:81/courses/${courseId}`, {
+            const response = await fetch(`${coursesURL}/${courseId}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json'

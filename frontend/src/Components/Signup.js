@@ -13,9 +13,7 @@ const Signup = () => {
 
     const handleSignup = async (e) => {
         e.preventDefault();
-        console.log(config.baseUrl);
         const signupURL = config.baseUrl + '/auth/signup'; 
-        console.log(signupURL, typeof(signupURL));
         try {
             const response = await fetch(signupURL, {
                 method: 'POST',
