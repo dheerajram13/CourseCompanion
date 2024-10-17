@@ -41,10 +41,10 @@ app.get('/health', (req, res) => {
 });
 
 // Routes
-app.use('/auth', authRoutes);
-app.use('/study-material', studyMaterialRoutes);
-app.use('/courses', courseRoutes);  
-app.use('/chat', chatRoutes);  
+app.use('/api/auth', authRoutes);
+app.use('/api/study-material', studyMaterialRoutes);
+app.use('/api/courses', courseRoutes);  
+app.use('/api/chat', chatRoutes);  
 
 // Start server
 const port = process.env.PORT || 81;
