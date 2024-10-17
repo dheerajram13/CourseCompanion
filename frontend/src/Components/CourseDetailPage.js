@@ -17,7 +17,7 @@ const CourseDetailPage = ({ uid }) => {
     useEffect(() => {
         const fetchCourseDetails = async () => {
             try {
-                const response = await fetch(`${baseURL}/${courseId}/details`, {
+                const response = await fetch(`${baseURL}/courses/${courseId}/details`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
