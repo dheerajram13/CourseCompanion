@@ -140,4 +140,4 @@ yarn-error.log*
 
 # Temporary Uploads
 temp_upload.csv
-uploads/
+uploads/firebase-config.json
