@@ -3,14 +3,13 @@ const serviceAccount = require('./firebase-adminsdk.json');
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  storageBucket: "gs://coursecompanion-de8fa.appspot.com", 
-  databaseURL: "https://coursecompanion-de8fa-default-rtdb.firebaseio.com/"
+  storageBucket: "", 
+  databaseURL: ""
 });
 
-const bucket = admin.storage().bucket("gs://coursecompanion-de8fa.appspot.com");
+const bucket = admin.storage().bucket("");
 const db = admin.database();
-
-// Test bucket access
+s
 bucket.exists().then((data) => {
   const exists = data[0];
   console.log(`Bucket exists: ${exists}`);

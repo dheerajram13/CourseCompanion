@@ -14,7 +14,7 @@ router.post('/signup', async (req, res) => {
     const user = await admin.auth().createUser({
       email,
       password,
-      displayName: name, // Set the display name in Firebase Auth
+      displayName: name, 
     });
 
     // Create a user document in the Realtime Database
@@ -35,11 +35,8 @@ router.post('/login', async (req, res) => {
     const { email, password } = req.body;
 
     try {
-        // Logic to authenticate user, usually with Firebase Auth
+   
         const userRecord = await admin.auth().getUserByEmail(email);
-        // You may need to validate password here with a different approach, as Firebase Admin SDK doesn't handle passwords directly
-        // In a typical setup, you'd use Firebase Authentication to validate the user's password
-
         res.status(200).json({ message: 'Login successful', uid: userRecord.uid });
     } catch (error) {
         res.status(400).json({ message: 'Error logging in', error: error.message });
@@ -48,7 +45,6 @@ router.post('/login', async (req, res) => {
 
 // Logout route
 router.post('/logout', (req, res) => {
-    // In a real implementation, you might invalidate the session or token
     res.status(200).json({ message: 'User logged out successfully' });
 });
 

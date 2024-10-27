@@ -4,14 +4,14 @@ const cors = require('cors');
 const { bucket, db } = require('../firebaseAdmin');
 const router = express.Router();
 
-// Enable CORS for all routes
+
 router.use(cors());
 
-// Set up multer for file storage with size limit
+
 const storage = multer.memoryStorage();
 const upload = multer({ 
     storage: storage,
-    limits: { fileSize: 10 * 1024 * 1024 } // 10MB limit
+    limits: { fileSize: 10 * 1024 * 1024 } 
 }).single('file');
 
 // Function to sanitize file name for use as a database key
@@ -23,7 +23,7 @@ router.post('/materials', async (req, res) => {
     const { uid, course, visibility } = req.body;
 
     try {
-        // Reference to the study_materials node in the database
+
         const materialsRef = db.ref('study_materials');
 
         // Fetch all study materials
@@ -34,7 +34,7 @@ router.post('/materials', async (req, res) => {
             return res.status(404).json({ message: 'No study materials found' });
         }
 
-        // Filter materials based on the provided UID, course, and visibility (optional filters)
+
         let filteredMaterials = Object.values(materials);
         console.log('All materials:', filteredMaterials);
 
@@ -54,7 +54,7 @@ router.post('/materials', async (req, res) => {
             return res.status(404).json({ message: 'No materials match the criteria' });
         }
 
-        // Return the filtered study materials
+
         res.status(200).json(filteredMaterials);
     } catch (error) {
         console.error('Error fetching study materials:', error);

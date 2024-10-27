@@ -223,7 +223,6 @@ const CourseManager = ({ uid }) => {
                 />
             )}
 
-            {/* <Typography variant="h4" gutterBottom style={{ marginTop: '40px' }}>Study Materials</Typography> */}
             <StudyMaterialUploader uid={uid}/>
             <Grid container spacing={3}>
                 {materials.map((material) => (

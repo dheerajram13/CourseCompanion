@@ -18,7 +18,7 @@ const UsersModal = ({ open, handleClose, course, uid, handleChatUser }) => {
                         {course.users.map((user) => (
                             <div key={user.userId} style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
                                 <Typography>{user.name} - {user.email}</Typography>
-                                {user.userId !== uid && ( // Check if user is not the authenticated user
+                                {user.userId !== uid && (
                                     <Button
                                         onClick={() => handleChatUser(user.userId, user.name)}
                                         style={{ marginLeft: '10px', minWidth: '40px' }}

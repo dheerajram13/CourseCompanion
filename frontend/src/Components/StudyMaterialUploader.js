@@ -101,7 +101,7 @@ const StudyMaterialUploader = ({ uid }) => {
                 setFile(null);
                 setSelectedCourse('');
                 setVisibility('public');
-                setOpenModal(false); // Close modal on success
+                setOpenModal(false); 
             } else {
                 setMessage(data.message || 'Upload failed');
             }
@@ -129,7 +129,6 @@ const StudyMaterialUploader = ({ uid }) => {
             </Grid>
         </Grid>
            
-            {/* Modal for uploading study material */}
             <Dialog open={openModal} onClose={() => setOpenModal(false)} maxWidth="sm" fullWidth>
                 <DialogTitle>Upload Study Material</DialogTitle>
                 <DialogContent>

@@ -19,7 +19,7 @@ const MaterialCard = ({ material, uid }) => {
         }
     };
 
-    // Function to get the correct icon based on file type
+ 
     const getFileIcon = () => {
         const fileExtension = material.fileUrl.split('.').pop();
         switch (fileExtension) {
@@ -37,14 +37,12 @@ const MaterialCard = ({ material, uid }) => {
         }
     };
 
-    // Function to format file size in KB/MB
     const formatFileSize = (size) => {
         if (size < 1024) return `${size} bytes`;
         if (size < 1024 * 1024) return `${(size / 1024).toFixed(1)} KB`;
         return `${(size / (1024 * 1024)).toFixed(1)} MB`;
     };
 
-    // Function to shorten the file name to three words
     const shortenFileName = (name) => {
         const words = name.split(' ');
         return words.length > 3 ? `${words.slice(0, 3).join(' ')}...` : name;
@@ -54,18 +52,18 @@ const MaterialCard = ({ material, uid }) => {
         <Grid item xs={12} sm={6}>
             <Paper elevation={3} style={{ padding: '10px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                 
-                {/* File Icon and Name */}
+           
                 <div style={{ display: 'flex', alignItems: 'center' }}>
                     {getFileIcon()}
                     <div style={{ marginLeft: '10px' }}>
                         <Typography 
                             variant="body1" 
                             noWrap 
-                            title={material.fileName} // Show full name on hover
+                            title={material.fileName} 
                         >
                             {shortenFileName(material.fileName)}
                         </Typography>
-                        {/* File Size */}
+                   
                         {material.fileSize && (
                             <><Typography variant="body2" style={{ color: 'black' }}>
                                 body={material.course}
@@ -77,7 +75,7 @@ const MaterialCard = ({ material, uid }) => {
                     </div>
                 </div>
 
-                {/* Open File Button */}
+               
                 <Button 
                     onClick={handleOpenMaterial}
                     variant="contained" 

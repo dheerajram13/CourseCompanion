@@ -24,7 +24,7 @@ services:
     networks:
       - coursecompanion-network
     ports:         
-      - "82:80"  # Change to 80 since Nginx listens on port 80
+      - "82:80"  
     environment:
       - REACT_APP_API_BASE_URL=http://backend:81/api
     deploy:

@@ -10,7 +10,6 @@ const Login = ({ onLoginSuccess }) => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            // Replace this with your actual API endpoint
             const response = await fetch(`${baseURL}/auth/login`, {
                 method: 'POST',
                 headers: {
@@ -26,7 +25,7 @@ const Login = ({ onLoginSuccess }) => {
 
             if (response.ok) {
                 console.log(result.uid);
-                onLoginSuccess(result.uid); // Pass the UID to the parent on successful login
+                onLoginSuccess(result.uid); 
             } else {
                 alert(`Login failed: ${result.message}`);
             }

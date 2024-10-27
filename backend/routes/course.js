@@ -8,7 +8,7 @@ const authenticateUser = async (req, res, next) => {
     if (!uid) {
         return res.status(401).json({ message: 'Unauthorized: No UID provided' });
     }
-    req.uid = uid; // assuming uid is directly passed
+    req.uid = uid; 
     next();
 };
 

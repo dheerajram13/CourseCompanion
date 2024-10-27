@@ -4,14 +4,14 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import App from './App';
 
-// Create a custom theme
+
 const theme = createTheme({
     palette: {
         primary: {
-            main: '#4a90e2', // Light blue as primary color
+            main: '#4a90e2', 
         },
         secondary: {
-            main: '#ff4081', // Pink as secondary color
+            main: '#ff4081', 
         },
     },
     typography: {

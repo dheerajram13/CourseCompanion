@@ -52,7 +52,7 @@ const CourseDetailPage = ({ uid }) => {
         return <Navigate to="/courses" />;
     }
     const handleBack = () => {
-        navigate(-1); // Go back to the previous page
+        navigate(-1); 
     };
 
     return (
